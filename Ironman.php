@@ -1,28 +1,32 @@
 <?php
-require_once 'BraccioDestro.php';
-require_once 'BraccioSinistro.php';
-require_once 'Gambe.php';
+require_once __DIR__ . '/BraccioDestro.php';
+require_once __DIR__ . '/BraccioSinistro.php';
+require_once __DIR__ . '/Gambe.php';
+require_once __DIR__ . '/SpallaDestra.php';
+require_once __DIR__ . '/SpallaSinistra.php';
 
 class Ironman {
     public static $counter = 0;
 
-    public $dx;
-    public $sx;
+    public $braccioDestro;
+    public $braccioSinistro;
     public $gambe;
+    public $spallaDestra;
+    public $spallaSinistra;
 
-    public function __construct(BraccioDestro $dx, BraccioSinistro $sx, Gambe $gambe) {
-        $this->dx = $dx;
-        $this->sx = $sx;
+    public function __construct(
+        BraccioDestro $braccioDestro,
+        BraccioSinistro $braccioSinistro,
+        Gambe $gambe,
+        SpallaDestra $spallaDestra,
+        SpallaSinistra $spallaSinistra
+    ) {
+        $this->braccioDestro = $braccioDestro;
+        $this->braccioSinistro = $braccioSinistro;
         $this->gambe = $gambe;
+        $this->spallaDestra = $spallaDestra;
+        $this->spallaSinistra = $spallaSinistra;
 
         self::$counter++;
-    }
-
-    public function azione($nome) {
-        echo "🦾 Ironman $nome in azione:\n";
-        $this->dx->attack1();
-        $this->sx->attack2();
-        $this->gambe->move();
-        echo "----------------------------\n";
     }
 }
